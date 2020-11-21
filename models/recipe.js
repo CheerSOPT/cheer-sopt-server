@@ -1,15 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'DRINKS_TB',
+    'RECIPE_TB',
     {
-      drinks_idx: {
+      recipe_idx: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      drinks_name: {
+      recipe_name: {
         type: DataTypes.STRING(30),
-        unique: true,
+        allowNull: false,
+      },
+      recipe_level: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },

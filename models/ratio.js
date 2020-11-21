@@ -1,15 +1,16 @@
+const { DRINKS_TB, RECIPE_TB } = require('../models');
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'DRINKS_TB',
+    'RATIO_TB',
     {
-      drinks_idx: {
+      ratio_idx: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      drinks_name: {
-        type: DataTypes.STRING(30),
-        unique: true,
+      ratio_percent: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
