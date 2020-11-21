@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const drinkController = require('../controllers/drinksController');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.post('/drinks/push', drinkController.postdrinks);
+router.get('/drinks', drinkController.getDrinks);
+router.post('/recipe/blender', drinkController.blendRecipe);
 
 module.exports = router;

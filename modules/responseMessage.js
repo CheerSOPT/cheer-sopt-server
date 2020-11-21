@@ -2,6 +2,10 @@ module.exports = {
   NULL_VALUE: "필요한 값이 없습니다.",
   OUT_OF_VALUE: "파라미터 값이 잘못 되었습니다.",
 
+  READ_DRINK_SUCCESS: "술 조회 성공",
+  BLEND_DRNIK_SUCCESS: "폭탄주 제조 성공",
+  BLEND_DRNIK_FAIL: "폭탄주 제조 실패",
+
   /* Member */
   MEMBER_CREATE_SUCCESS: "회원 생성 성공",
   MEMBER_READ_SUCCESS: "회원 조회 성공",
