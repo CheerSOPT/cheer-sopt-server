@@ -7,10 +7,6 @@ const statusCode = require('../modules/statusCode');
 exports.getRecipeList = async (req, res) => {
   try {
     const recipes = await recipeService.getRecipeList();
-    recipes[0].dataValues.RATIO_TBs.map((value, idx) => {
-      console.log(value.dataValues.DRINKS_TB.dataValues.drinks_name);
-    });
-    // console.log(recipes[0].dataValues.RATIO_TBs[1]); //.dataValues.DRINKS_TB.dataValues.drinks_name);
     return res
       .status(statusCode.OK)
       .send(
@@ -28,6 +24,35 @@ exports.getRecipeList = async (req, res) => {
         util.fail(
           statusCode.INTERNAL_SERVER_ERROR,
           responseMessage.READ_RECIPE_FAIL
+        )
+      );
+  }
+};
+
+// 레시피 등록
+exports.postRecipe = async (req, res) => {
+  const { recipeName, recipeLevel, ratios } = req.body;
+  try {
+    const recipeId = await recipeService.insertRecipe(recipeName, recipeLevel);
+    ratios.map(async (value) => {
+      console.log(value);
+      const ratioId = await recipeService.insertRatio(
+        recipeId,
+        value.drinksIdx,
+        value.ratioPercent
+      );
+    });
+    return res
+      .status(statusCode.OK)
+      .send(util.success(statusCode.OK, responseMessage.POST_RECIPE_SUCCESS));
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .send(
+        util.fail(
+          statusCode.INTERNAL_SERVER_ERROR,
+          responseMessage.POST_RECIPE_FAIL
         )
       );
   }

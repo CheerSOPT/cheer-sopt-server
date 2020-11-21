@@ -25,26 +25,31 @@ exports.getRecipeList = async () => {
   }
 };
 
-// 레시피 전체 리스트 조회
-// exports.getRecipeList = async () => {
-//   try {
-//     const recipeList = await RATIO_TB.findAll({
-//       attributes: ['drinks_idx', 'ratio_percent'],
-//       include: [
-//         {
-//           model: RECIPE_TB,
-//           // required: true,
-//           attributes: ['recipe_name', 'recipe_level'],
-//         },
-//         {
-//           model: DRINKS_TB,
-//           // required: true,
-//           attributes: ['drinks_name'],
-//         },
-//       ],
-//     });
-//     return recipeList;
-//   } catch (err) {
-//     throw err;
-//   }
-// };
+// 레시피 등록
+exports.insertRecipe = async (recipeName, recipeLevel) => {
+  try {
+    const insertRecipeResult = await RECIPE_TB.create({
+      recipe_name: recipeName,
+      recipe_level: recipeLevel,
+    });
+    return insertRecipeResult.recipe_idx;
+  } catch (err) {
+    throw err;
+  }
+};
+
+// 레시피 비율 등록
+exports.insertRatio = async (recipeIdx, drinksIdx, ratioPercent) => {
+  try {
+    const insertRatioResult = await RATIO_TB.create({
+      drinks_idx: drinksIdx,
+      DRINKSTBDrinksIdx: drinksIdx,
+      recipe_idx: recipeIdx,
+      RECIPETBRecipeIdx: recipeIdx,
+      ratio_percent: ratioPercent,
+    });
+    return insertRatioResult.ratio_idx;
+  } catch (err) {
+    throw err;
+  }
+};
