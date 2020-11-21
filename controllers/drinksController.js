@@ -10,9 +10,6 @@ module.exports = {
     getDrinks: async (req, res) => {
         try {
             const drinks = await getDrinks();
-            if (!drinks) {
-                return res.status(statusCode.NOT_FOUND).send(util.fail(statusCode.NOT_FOUND, responseMessage.NULL_VALUE));
-            }
             return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.READ_DRINK_SUCCESS, drinks));
 
         } catch (err) {
@@ -27,6 +24,7 @@ module.exports = {
             res.send(drink);
         } catch (err) {
             console.log(err);
+            res.send(err);
         }
     },
     blendRecipe: async (req, res) => {
