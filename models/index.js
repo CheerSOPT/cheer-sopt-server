@@ -10,5 +10,7 @@ if (config.use_env_variable) {
 }
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.DRINKS_TB = require('./drinks')(sequelize,Sequelize);
+db.DRINKS_TB = require('./drinks')(sequelize, Sequelize);
+
+
 module.exports = db;
