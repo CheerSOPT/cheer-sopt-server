@@ -81,7 +81,7 @@ exports.blendRecipe = async (req, res) => {
       const recipeLevel_2 = confirmLevel(level_sum_2);
       const drink_1_stack = drinks_idx_1.toString().repeat(ratio_two[0]).split('');
       const drink_2_stack = drinks_idx_2.toString().repeat(ratio_two[1]).split('');
-      const ratios = [{ drinksName: drink_1_name, drinksIdx: drinks_idx_1, ratioPercent: ratio_two[0] }, { drinksName: drink_2_name, drinksIdx: drinks_idx_2, ratioPercent: ratio_two[1] }];
+      const ratios = [{ drinksIdx: drinks_idx_1, ratioPercent: ratio_two[0] }, { drinksIdx: drinks_idx_2, ratioPercent: ratio_two[1] }];
       const two_recipe_stack = drink_1_stack.concat(drink_2_stack);
       // "ratios" : [
       //     {"drinksIdx": 3, "ratioPercent":3}, 
@@ -98,10 +98,10 @@ exports.blendRecipe = async (req, res) => {
     const drink_2_stack = drinks_idx_2.toString().repeat(ratio_three[1]).split('');
     const drink_3_stack = drinks_idx_3.toString().repeat(ratio_three[2]).split('');
     const three_recipe_stack = drink_1_stack.concat(drink_2_stack, drink_3_stack);
-    const level_sum_3 = drink_1_level * ratio_three[0] + drink_2_level * ratio_three[1] + drink_3_level * ratio_three[2];
     const recipeLevel_3 = confirmLevel(level_sum_3);
+    const level_sum_3 = drink_1_level * ratio_three[0] + drink_2_level * ratio_three[1] + drink_3_level * ratio_three[2];
     const blended_count_3 = 3;
-    const ratios = [{ drinksName: drink_1_name, drinksIdx: drinks_idx_1, ratioPercent: ratio_three[0] }, { drinksName: drink_2_name, drinksIdx: drinks_idx_2, ratioPercent: ratio_three[1] }, { drinksName: drink_3_name, drinksIdx: drinks_idx_3, ratioPercent: ratio_three[2] }];
+    const ratios = [{ drinksIdx: drinks_idx_1, ratioPercent: ratio_three[0] }, { drinksIdx: drinks_idx_2, ratioPercent: ratio_three[1] }, { drinksIdx: drinks_idx_3, ratioPercent: ratio_three[2] }];
     return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMessage.BLEND_DRNIK_SUCCESS, { ratios, recipeLevel_3, three_recipe_stack, blended_count_3 }));
   } catch (err) {
     console.log(err);
